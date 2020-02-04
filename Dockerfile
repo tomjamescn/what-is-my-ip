@@ -1,9 +1,9 @@
-FROM golang:1.13.7 AS builder
+FROM golang:alpine AS builder
 WORKDIR /go/src/github.com/tomjamescn/what-is-my-ip
 COPY main.go .
 RUN go build -o main
 
-FROM debian:latest
+FROM alpine
 WORKDIR /root/
 COPY --from=builder /go/src/github.com/tomjamescn/what-is-my-ip/main .
 
